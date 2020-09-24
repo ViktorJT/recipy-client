@@ -28,6 +28,9 @@ class NavBar extends Component {
               <p>{this.state.loggedInUser.username}</p>
             </li>
             <li>
+              <Link to="/">home</Link>
+            </li>
+            <li>
               <button onClick={() => this.logoutUser()}>log out</button>
             </li>
           </ul>
@@ -39,6 +42,9 @@ class NavBar extends Component {
           <ul>
             <li>
               <Link to="/signup">sign up</Link>
+            </li>
+            <li>
+              <Link to="/">home</Link>
             </li>
             <li>
               <Link to="/login">log in</Link>

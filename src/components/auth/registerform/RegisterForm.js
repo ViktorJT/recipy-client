@@ -5,7 +5,7 @@ import AuthService from '../auth-service';
 import './RegisterForm.css';
 
 export default function RegisterForm(props) {
-  // ! useForm has a reset function to reset the values after submit, but only if default values are passed. see api docs for react-hook-form
+  // ! useForm has a reset function to reset the values after submit, but only if default values are passed. need to check api docs for react-hook-form
   const {register, handleSubmit, errors} = useForm();
   const service = new AuthService();
   const [submitting, setSubmitting] = useState(false);
