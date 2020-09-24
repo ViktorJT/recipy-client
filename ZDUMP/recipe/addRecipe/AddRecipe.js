@@ -9,18 +9,16 @@ class AddRecipe extends Component {
     instructions: '',
     image: '',
     duration: 0,
-    isShowing: false,
   };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
     const {title, ingredients, instructions, image, duration} = this.state;
-    const cookbookID = this.props.theCookbook._id; // <== we need to know to which cookbook the created recipe belong, so we need to get its 'id'
-    // it has to be the 'id' because we are referencing cookbook
-    // by its id in the recipe model on the server side ( cookbook: {type: Schema.Types.ObjectId, ref: 'Cookbook'})
+    const cookbookID = this.props.theCookbook._id;
 
     axios
       .post('http://localhost:5000/api/recipes', {
+        original: true,
         title,
         ingredients,
         instructions,

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import EditCookbook from '../editcookbook/EditCookbook';
-import AddRecipe from '../../recipe/addRecipe/AddRecipe';
+import EditCookbook from '../editrecipe/EditCookbook';
+// import AddRecipe from '../../../../ZDUMP/recipe/addRecipe/AddRecipe';
 
 class CookbookDetails extends Component {
   state = {};
@@ -73,7 +73,7 @@ class CookbookDetails extends Component {
     return (
       <div>
         <h1>{this.state.title}</h1>
-        {this.state.recipes && this.state.recipes.length > 0 && <h3>Recipes </h3>}
+        {this.state.recipes && this.state.recipes.length > 0 && <h3>Recipes</h3>}
         {this.state.recipes &&
           this.state.recipes.map((recipe, index) => {
             return (
