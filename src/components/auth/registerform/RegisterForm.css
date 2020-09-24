@@ -1,0 +1,26 @@
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  max-width: 600px;
+  text-align: left;
+  margin: 6rem auto;
+}
+
+form div {
+  display: inherit;
+  flex-flow: inherit;
+  margin-bottom: 2rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: smaller;
+}
+
+p.error {
+  color: red;
+  opacity: 0.8;
+}
