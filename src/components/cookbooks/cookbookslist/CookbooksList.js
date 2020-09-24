@@ -10,11 +10,13 @@ class CookbookList extends Component {
   state = {listOfCookbooks: []};
 
   getAllCookbooks = () => {
-    axios.get(`http://localhost:5000/api/cookbooks`).then((responseFromApi) => {
-      this.setState({
-        listOfCookbooks: responseFromApi.data,
+    axios
+      .get(`http://localhost:5000/api/cookbooks`, {withCredentials: true})
+      .then((responseFromApi) => {
+        this.setState({
+          listOfCookbooks: responseFromApi.data,
+        });
       });
-    });
   };
 
   componentDidMount() {
@@ -34,6 +36,11 @@ class CookbookList extends Component {
                 <Link to={`/cookbooks/${cookbook._id}`}>
                   <h3>{cookbook.title}</h3>
                 </Link>
+                <ul>
+                  {cookbook.recipes.map((recipe, index) => {
+                    return <li key={index}>{recipe.title}</li>;
+                  })}
+                </ul>
               </div>
             );
           })}
