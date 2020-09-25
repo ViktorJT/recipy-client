@@ -21,17 +21,17 @@ class NavBar extends Component {
 
   render() {
     if (this.state.loggedInUser) {
+      console.log(this.state);
       return (
         <nav>
+          <Link to="/">
+            <h1>RECIPY</h1>
+          </Link>
           <ul>
-            <li>
-              <p>{this.state.loggedInUser.username}</p>
-            </li>
-            <li>
-              <Link to="/">home</Link>
-            </li>
-            <li>
-              <button onClick={() => this.logoutUser()}>log out</button>
+            <li className="button active">
+              <div onClick={() => this.logoutUser()}>
+                log out <b>{this.state.loggedInUser.username}</b>
+              </div>
             </li>
           </ul>
         </nav>

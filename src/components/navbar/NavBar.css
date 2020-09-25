@@ -32,9 +32,11 @@ li {
   border-radius: 2rem;
   background-color: white;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 
-.button:hover {
+.button:hover,
+.button.active {
   background-color: black;
   color: white;
 }

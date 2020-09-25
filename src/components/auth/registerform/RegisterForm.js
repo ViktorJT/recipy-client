@@ -21,6 +21,7 @@ export default function RegisterForm(props) {
             .then((res) => {
               console.log('signup successful!');
               props.getUser(res);
+              props.history.push('/');
             })
             .catch((error) => console.log(error));
 

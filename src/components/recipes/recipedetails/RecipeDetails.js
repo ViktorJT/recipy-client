@@ -48,6 +48,7 @@ class RecipeDetails extends Component {
         axios
           .get(`http://localhost:5000/api/recipes/${res._id}`, {withCredentials: true})
           .then(({data}) => {
+            console.log(data);
             let relatedVariants = data.variants;
             this.setState({variants: relatedVariants});
           })
@@ -105,7 +106,6 @@ class RecipeDetails extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className="recipe">
         <div className="sidebar">
@@ -116,7 +116,16 @@ class RecipeDetails extends Component {
           <div>
             <button onClick={() => this.deleteRecipe()}>Delete recipe</button>
             <button>
-              <Link to="/recipes/copy">Create a variant</Link>
+              <Link
+                to={{
+                  pathname: '/recipes/copy',
+                  state: {
+                    recipe: this.state,
+                  },
+                }}
+              >
+                Create a variant
+              </Link>
             </button>
             <button onClick={() => this.likeRecipe()}>{this.state.likes} likes</button>
           </div>
