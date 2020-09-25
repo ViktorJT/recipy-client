@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import AuthService from '../../auth/auth-service';
-import './AddRecipe.css';
+import './AddVariant.css';
 
-class AddRecipe extends Component {
+class AddVariant extends Component {
   state = {
     title: '',
-    ingredients: [],
+    ingredients: '',
     instructions: '',
     image: '',
     duration: 0,
@@ -16,23 +15,19 @@ class AddRecipe extends Component {
     event.preventDefault();
     const {title, ingredients, instructions, image, duration} = this.state;
     axios
-      .post('http://localhost:5000/api/recipes/add', {
-        title,
-        ingredients,
-        instructions,
-        image,
-        duration,
-      })
+      .post(
+        'http://localhost:5000/api/recipes/add',
+        {
+          title,
+          ingredients,
+          instructions,
+          image,
+          duration,
+        },
+        {withCredentials: true}
+      )
       .then(() => {
         this.props.history.push('/');
-        // this.props.getData();
-        // this.setState({
-        //   title: '',
-        //   ingredients: [],
-        //   instructions: '',
-        //   image: '',
-        //   duration: 0,
-        // });
       })
       .catch((error) => console.log(error));
   };
@@ -97,4 +92,4 @@ class AddRecipe extends Component {
   }
 }
 
-export default AddRecipe;
+export default AddVariant;

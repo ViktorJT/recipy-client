@@ -4,7 +4,7 @@ import AuthService from './components/auth/auth-service';
 import RegisterForm from './components/auth/registerform/RegisterForm';
 import LoginForm from './components/auth/loginform/LoginForm';
 import RecipesList from './components/recipes/recipeslist/RecipesList';
-import AddRecipe from './components/recipes/addrecipe/AddRecipe';
+import AddVariant from './components/recipes/addvariant/AddVariant';
 import RecipeDetails from './components/recipes/recipedetails/RecipeDetails';
 import NavBar from './components/navbar/NavBar';
 import './App.css';
@@ -46,7 +46,11 @@ class App extends Component {
           <Link to="/recipes/add">+ recipe</Link>
           <Switch>
             <Route exact path="/" component={RecipesList} />
-            <Route exact path="/recipes/add" component={AddRecipe} />
+            <Route
+              exact
+              path="/recipes/add"
+              render={(props) => <AddVariant {...props} userInSession={this.state.loggedInUser} />}
+            />
             {/* <Route exact path="/recipes/copy" component={CopyRecipe} /> */}
             <Route exact path="/recipes/:id" component={RecipeDetails} />
           </Switch>
@@ -56,7 +60,6 @@ class App extends Component {
       return (
         <div className="App">
           <NavBar userInSession={this.state.loggedInUser} />
-          <Link to="/recipes/add">+ recipe</Link>
           <Switch>
             <Route exact path="/signup" render={() => <RegisterForm getUser={this.getTheUser} />} />
             <Route exact path="/login" render={() => <LoginForm getUser={this.getTheUser} />} />

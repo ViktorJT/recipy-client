@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import EditRecipe from '../editrecipe/EditRecipe';
+import RecipeCard from '../recipecard/RecipeCard';
+import './RecipeDetails.css';
 
 class RecipeDetails extends Component {
-  state = {};
+  state = {
+    variants: [],
+  };
 
   // ! PUT THIS IN ITS OWN PAGE/ROUTE INSTEAD!
   // renderEditForm = () => {
@@ -22,16 +26,32 @@ class RecipeDetails extends Component {
   // };
 
   componentDidMount() {
-    this.getSingleRecipe();
+    this.getSingleVariant();
   }
 
-  getSingleRecipe = () => {
+  componentDidUpdate({location}) {
+    if (this.props.location.pathname !== location.pathname) {
+      this.getSingleVariant();
+    }
+  }
+
+  getSingleVariant = () => {
     const {params} = this.props.match;
     axios
-      .get(`http://localhost:5000/api/recipes/${params.id}`, {withCredentials: true})
+      .get(`http://localhost:5000/api/recipes/variant/${params.id}`, {withCredentials: true})
       .then((responseFromApi) => {
         const theRecipe = responseFromApi.data;
         this.setState(theRecipe);
+        return this.state.variantOf;
+      })
+      .then((res) => {
+        axios
+          .get(`http://localhost:5000/api/recipes/${res._id}`, {withCredentials: true})
+          .then(({data}) => {
+            let relatedVariants = data.variants;
+            this.setState({variants: relatedVariants});
+          })
+          .catch((err) => console.error(err));
       })
       .catch((err) => {
         console.log(err);
@@ -85,30 +105,40 @@ class RecipeDetails extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
-      <div>
-        <h1>{this.state.title}</h1>
-        <h2>{this.state.ingredients}</h2>
-        <h3>{this.state.instructions}</h3>
-        <img src={this.state.image} alt={this.state.title} />
-        <p>minutes to cook: {this.state.duration}</p>
-        <button onClick={() => this.likeRecipe()}>{this.state.likes} likes</button>
-        {this.state.variants &&
-          this.state.variants.length > 0 &&
-          this.state.variants.map((variant) => {
-            return (
-              <div>
-                <p>VARIANTS EXIST</p>
-              </div>
-            );
-          })}
-
-        <button onClick={() => this.deleteRecipe()}>Delete recipe</button>
-        <button>
-          <Link to="/recipes/copy">Create a variant</Link>
-        </button>
-
-        <br />
+      <div className="recipe">
+        <div className="sidebar">
+          <h2>{this.state.title}</h2>
+          <p>minutes to cook: {this.state.duration}</p>
+          <p>serves: {this.state.serves}</p>
+          <p>difficulty: {this.state.difficulty}</p>
+          <div>
+            <button onClick={() => this.deleteRecipe()}>Delete recipe</button>
+            <button>
+              <Link to="/recipes/copy">Create a variant</Link>
+            </button>
+            <button onClick={() => this.likeRecipe()}>{this.state.likes} likes</button>
+          </div>
+          <hr />
+          <div className="variantsContainer">
+            {this.state.variants && this.state.variants.length && <h5>variants of this dish:</h5>}
+            {this.state.variants &&
+              this.state.variants.length > 0 &&
+              this.state.variants.map((recipe) => {
+                return (
+                  <RecipeCard recipe={recipe} key={recipe._id} getRecipe={this.getSingleVariant} />
+                );
+              })}
+          </div>
+        </div>
+        <div className="instructions">
+          <img src={this.state.image} alt={this.state.title} />
+          <p>Ingredients</p>
+          <h3>{this.state.ingredients}</h3>
+          <p>Instructions</p>
+          <h3>{this.state.instructions}</h3>
+        </div>
       </div>
     );
   }

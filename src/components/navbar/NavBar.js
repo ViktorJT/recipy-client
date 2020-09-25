@@ -39,14 +39,14 @@ class NavBar extends Component {
     } else {
       return (
         <nav>
+          <Link to="/">
+            <h1>RECIPY</h1>
+          </Link>
           <ul>
-            <li>
+            <li className="button">
               <Link to="/signup">sign up</Link>
             </li>
-            <li>
-              <Link to="/">home</Link>
-            </li>
-            <li>
+            <li className="button">
               <Link to="/login">log in</Link>
             </li>
           </ul>

@@ -1,0 +1,24 @@
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.overview {
+  max-width: 960px;
+  margin: 4rem auto;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.button {
+  padding: 0.5rem 1.5rem;
+  border: 1px solid gray;
+  border-radius: 2rem;
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+}

@@ -1,18 +1,42 @@
 nav {
-  width: 100vw;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 8vw;
 }
 
 nav ul {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-end;
+  gap: 1rem;
   text-align: center;
   padding: 0;
 }
 
 li {
   list-style: none;
+}
+
+.button {
+  padding: 0.5rem 1.5rem;
+  border: 1px solid gray;
+  border-radius: 2rem;
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-color: black;
+  color: white;
 }
 
 a {

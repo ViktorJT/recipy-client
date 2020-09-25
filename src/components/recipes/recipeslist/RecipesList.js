@@ -1,20 +1,28 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-
-import AddRecipe from '../addrecipe/AddRecipe';
+import RecipeCard from '../recipecard/RecipeCard';
+import './RecipesList.css';
 
 class RecipesList extends Component {
-  state = {listOfRecipes: []};
+  state = {
+    popularRecipes: [],
+  };
 
   getAllRecipes = () => {
     axios
-      .get(`http://localhost:5000/api/recipes`, {withCredentials: true})
-      .then((responseFromApi) => {
-        this.setState({
-          listOfRecipes: responseFromApi.data,
+      .get(`http://localhost:5000/api/recipes`)
+      .then(({data}) => {
+        let bestVariants = data.map((recipe) => {
+          return recipe.variants.sort(function (a, b) {
+            return b.likes - a.likes;
+          })[0];
         });
-      });
+        this.setState({
+          popularRecipes: bestVariants,
+        });
+      })
+      .catch((err) => console.error(err));
   };
 
   componentDidMount() {
@@ -23,21 +31,16 @@ class RecipesList extends Component {
 
   render() {
     return (
-      <div>
-        {/* THIS SHOULD LINK TO A PAGE TO ADD A RECIPE, NOT ON THE PAGE ITSELF */}
-        {/* <div>
-          <AddRecipe getData={() => this.getAllRecipes()} />
-        </div> */}
-        <div>
-          {this.state.listOfRecipes.map((recipe) => {
-            return (
-              <div key={recipe._id}>
-                <Link to={`/recipes/${recipe._id}`}>
-                  <h3>{recipe.title}</h3>
-                </Link>
-              </div>
-            );
-          })}
+      <div className="container">
+        <Link to="/recipes/add" className="button">
+          + recipe
+        </Link>
+        <div class="overview">
+          {this.state.popularRecipes &&
+            this.state.popularRecipes.length > 0 &&
+            this.state.popularRecipes.map((recipe) => {
+              return <RecipeCard recipe={recipe} key={recipe._id} />;
+            })}
         </div>
       </div>
     );
