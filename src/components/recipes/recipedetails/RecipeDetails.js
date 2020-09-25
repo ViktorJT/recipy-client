@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Link, Redirect} from 'react-router-dom';
-import EditRecipe from '../editrecipe/EditRecipe';
+import {Link} from 'react-router-dom';
+// import EditRecipe from '../editrecipe/EditRecipe';
 import RecipeCard from '../recipecard/RecipeCard';
 import './RecipeDetails.css';
 
@@ -91,18 +91,18 @@ class RecipeDetails extends Component {
       });
   };
 
-  ownershipCheck = (recipe) => {
-    if (this.props.loggedInUser && recipe.owner == this.props.loggedInUser._id) {
-      return (
-        // ! RENDER A LINK TO THE EDIT PAGE, NOT ON THE PAGE ITSELF
-        <div>
-          <div>{this.renderEditForm()} </div>
-          {/* DELETE BUTTON CAN STAY */}
-          <button onClick={() => this.deleteRecipe(this.state._id)}>Delete recipe</button>
-        </div>
-      );
-    }
-  };
+  // ownershipCheck = (recipe) => {
+  //   if (this.props.loggedInUser && recipe.owner === this.props.loggedInUser._id) {
+  //     return (
+  //       // ! RENDER A LINK TO THE EDIT PAGE, NOT ON THE PAGE ITSELF
+  //       <div>
+  //         <div>{this.renderEditForm()} </div>
+  //         {/* DELETE BUTTON CAN STAY */}
+  //         <button onClick={() => this.deleteRecipe(this.state._id)}>Delete recipe</button>
+  //       </div>
+  //     );
+  //   }
+  // };
 
   render() {
     return (

@@ -11,7 +11,7 @@ class RecipesList extends Component {
 
   getAllRecipes = () => {
     axios
-      .get(`http://localhost:5000/api/recipes`)
+      .get(`http://localhost:5000/api/recipes`, {withCredentials: true})
       .then(({data}) => {
         let bestVariants = data.map((recipe) => {
           return recipe.variants.sort(function (a, b) {
@@ -35,7 +35,7 @@ class RecipesList extends Component {
         <Link to="/recipes/add" className="button">
           + recipe
         </Link>
-        <div class="overview">
+        <div className="overview">
           {this.state.popularRecipes &&
             this.state.popularRecipes.length > 0 &&
             this.state.popularRecipes.map((recipe) => {

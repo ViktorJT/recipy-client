@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import AuthService from './components/auth/auth-service';
 import RegisterForm from './components/auth/registerform/RegisterForm';
 import LoginForm from './components/auth/loginform/LoginForm';
