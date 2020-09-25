@@ -48,7 +48,6 @@ class RecipeDetails extends Component {
         axios
           .get(`http://localhost:5000/api/recipes/${res._id}`, {withCredentials: true})
           .then(({data}) => {
-            console.log(data);
             let relatedVariants = data.variants;
             this.setState({variants: relatedVariants});
           })
@@ -131,9 +130,11 @@ class RecipeDetails extends Component {
           </div>
           <hr />
           <div className="variantsContainer">
-            {this.state.variants && this.state.variants.length && <h5>variants of this dish:</h5>}
+            {this.state.variants && this.state.variants.length > 1 && (
+              <h5>variants of this dish:</h5>
+            )}
             {this.state.variants &&
-              this.state.variants.length > 0 &&
+              this.state.variants.length > 1 &&
               this.state.variants.map((recipe) => {
                 return (
                   <RecipeCard recipe={recipe} key={recipe._id} getRecipe={this.getSingleVariant} />

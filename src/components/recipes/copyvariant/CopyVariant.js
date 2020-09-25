@@ -29,7 +29,7 @@ class CopyVariant extends Component {
         {withCredentials: true}
       )
       .then(() => {
-        this.props.history.push('/');
+        this.props.history.push(`/recipes/${this.props.location.state.recipe._id}`);
       })
       .catch((error) => console.log(error));
   };
@@ -40,7 +40,6 @@ class CopyVariant extends Component {
   };
 
   render() {
-    console.log(this.props.location.state);
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
