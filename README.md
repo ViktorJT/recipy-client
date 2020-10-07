@@ -2,9 +2,9 @@
 
 _Social recipe app with quirky, misspelled name to attract lucrative silicon valley investments_
 
-### Share Cookbooks with your friends!
+### Share recipes with your friends!
 
-Cookbooks? Remember those things? Me neither!
+Recipes? Remember those things? Me neither!
 
 ### Friends?
 
