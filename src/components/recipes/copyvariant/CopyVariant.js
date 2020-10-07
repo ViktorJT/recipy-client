@@ -17,7 +17,7 @@ class CopyVariant extends Component {
     const {title, ingredients, instructions, image, duration, variantOf} = this.state;
     axios
       .post(
-        'http://localhost:5000/api/recipes/copy',
+        '/api/recipes/copy',
         {
           title,
           ingredients,

@@ -38,7 +38,7 @@ class RecipeDetails extends Component {
   getSingleVariant = () => {
     const {params} = this.props.match;
     axios
-      .get(`http://localhost:5000/api/recipes/variant/${params.id}`, {withCredentials: true})
+      .get(`/api/recipes/variant/${params.id}`, {withCredentials: true})
       .then((responseFromApi) => {
         const theRecipe = responseFromApi.data;
         this.setState(theRecipe);
@@ -46,7 +46,7 @@ class RecipeDetails extends Component {
       })
       .then((res) => {
         axios
-          .get(`http://localhost:5000/api/recipes/${res._id}`, {withCredentials: true})
+          .get(`/api/recipes/${res._id}`, {withCredentials: true})
           .then(({data}) => {
             let relatedVariants = data.variants;
             this.setState({variants: relatedVariants});
@@ -66,7 +66,7 @@ class RecipeDetails extends Component {
     });
     axios
       .put(
-        `http://localhost:5000/api/recipes/${params.id}`,
+        `/api/recipes/${params.id}`,
         {
           likes: this.state.likes,
         },
@@ -82,7 +82,7 @@ class RecipeDetails extends Component {
   deleteRecipe = () => {
     const {params} = this.props.match;
     axios
-      .delete(`http://localhost:5000/api/recipes/${params.id}`, {withCredentials: true})
+      .delete(`/api/recipes/${params.id}`, {withCredentials: true})
       .then(() => {
         this.props.history.push('/');
       })

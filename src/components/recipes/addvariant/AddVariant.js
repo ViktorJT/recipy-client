@@ -16,7 +16,7 @@ class AddVariant extends Component {
     const {title, ingredients, instructions, image, duration} = this.state;
     axios
       .post(
-        'http://localhost:5000/api/recipes/add',
+        '/api/recipes/add',
         {
           title,
           ingredients,

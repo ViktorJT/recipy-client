@@ -18,7 +18,7 @@ class EditRecipe extends Component {
 
     axios
       .put(
-        `http://localhost:5000/api/recipes/${this.props.theRecipe._id}`,
+        `/api/recipes/${this.props.theRecipe._id}`,
         {
           title,
           ingredients,
