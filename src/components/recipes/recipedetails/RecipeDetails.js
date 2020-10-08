@@ -38,7 +38,9 @@ class RecipeDetails extends Component {
   getSingleVariant = () => {
     const {params} = this.props.match;
     axios
-      .get(`/api/recipes/variant/${params.id}`, {withCredentials: true})
+      .get(`https://recipy-server.herokuapp.com/api/recipes/variant/${params.id}`, {
+        withCredentials: true,
+      })
       .then((responseFromApi) => {
         const theRecipe = responseFromApi.data;
         this.setState(theRecipe);
@@ -46,7 +48,9 @@ class RecipeDetails extends Component {
       })
       .then((res) => {
         axios
-          .get(`/api/recipes/${res._id}`, {withCredentials: true})
+          .get(`https://recipy-server.herokuapp.com/api/recipes/${res._id}`, {
+            withCredentials: true,
+          })
           .then(({data}) => {
             let relatedVariants = data.variants;
             this.setState({variants: relatedVariants});
@@ -66,7 +70,7 @@ class RecipeDetails extends Component {
     });
     axios
       .put(
-        `/api/recipes/${params.id}`,
+        `https://recipy-server.herokuapp.com/api/recipes/${params.id}`,
         {
           likes: this.state.likes,
         },
@@ -82,7 +86,9 @@ class RecipeDetails extends Component {
   deleteRecipe = () => {
     const {params} = this.props.match;
     axios
-      .delete(`/api/recipes/${params.id}`, {withCredentials: true})
+      .delete(`https://recipy-server.herokuapp.com/api/recipes/${params.id}`, {
+        withCredentials: true,
+      })
       .then(() => {
         this.props.history.push('/');
       })

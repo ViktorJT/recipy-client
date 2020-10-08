@@ -11,7 +11,7 @@ class RecipesList extends Component {
 
   getAllRecipes = () => {
     axios
-      .get(`/api/recipes`, {withCredentials: true})
+      .get(`https://recipy-server.herokuapp.com/api/recipes`, {withCredentials: true})
       .then(({data}) => {
         let bestVariants = data.map((recipe) => {
           return recipe.variants.sort(function (a, b) {

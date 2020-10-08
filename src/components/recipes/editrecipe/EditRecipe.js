@@ -18,7 +18,7 @@ class EditRecipe extends Component {
 
     axios
       .put(
-        `/api/recipes/${this.props.theRecipe._id}`,
+        `https://recipy-server.herokuapp.com/api/recipes/${this.props.theRecipe._id}`,
         {
           title,
           ingredients,

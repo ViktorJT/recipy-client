@@ -17,7 +17,7 @@ class CopyVariant extends Component {
     const {title, ingredients, instructions, image, duration, variantOf} = this.state;
     axios
       .post(
-        '/api/recipes/copy',
+        'https://recipy-server.herokuapp.com/api/recipes/copy',
         {
           title,
           ingredients,
