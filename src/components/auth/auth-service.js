@@ -3,8 +3,7 @@ import axios from 'axios';
 class AuthService {
   constructor() {
     let service = axios.create({
-      // baseURL: 'https://recipy-app.netlify.app/api',
-      baseURL: 'http://localhost:5000/api',
+      baseURL: 'https://recipy-app.netlify.app/api',
       withCredentials: true,
     });
     this.service = service;
